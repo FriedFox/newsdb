@@ -2,7 +2,7 @@
 <?php
   require_once 'header.php';
   require_once 'config.php';
-    $limitStart = $_GET['page'] * 5;
+    $limitStart = ($_GET['page'] * 5);
     // Выполнить запрос. Если ошибка - выводим
     if ($result = $newsdb->query('SELECT id, title, announce, idate FROM news ORDER BY idate DESC LIMIT '.$limitStart.', 5')) {
         echo '<h1 class="article-header">Новости</h1>';
@@ -21,8 +21,8 @@
     if ($news = $newsdb->query('SELECT * FROM news')) {
       $pages = ceil(mysqli_num_rows($news) / 5);
     }
-    for ($page = 0;$page <= $pages;$page++){
-      echo('<a class="pages-link" href="/news.php?page='.$page.'">'.$page.'</a>');
+    for ($page = 0;$page < $pages;$page++){
+      echo('<a class="pages-link" href="/news.php?page='.$page.'">'.($page+1).'</a>');
     }
 
     // освобождение используемой памяти
